@@ -1,5 +1,8 @@
 # BlueFerry
 
+> Note: this is a fork that I use claude code to vibe code a flake.nix for installation on
+> NixOS. If you use this, your mileage may vary, I mostly did this for personal usage.
+
 ![BlueFerry messaging client](screenshot.png)
 
 iMessage Bluetooth bridge for Linux
