@@ -73,6 +73,37 @@ installing them. The finished package archives are written to
 See [packaging/arch/README.md](packaging/arch/README.md) if you want to build
 individual packages or understand exactly what pacman owns.
 
+## Install on NixOS
+
+This repository is also a flake, packaging the backend (daemon, CLI,
+`blueferry-tui`) together with the GTK client:
+
+```bash
+nix run github:erikwb/blueferry#blueferry -- --help
+```
+
+For a persistent install with the D-Bus-activated backend service and the
+BlueZ experimental-bearer drop-in wired up, add the module to your NixOS
+configuration:
+
+```nix
+{
+  inputs.blueferry.url = "github:erikwb/blueferry";
+
+  outputs = { nixpkgs, blueferry, ... }: {
+    nixosConfigurations.example = nixpkgs.lib.nixosSystem {
+      modules = [
+        blueferry.nixosModules.default
+        { services.blueferry.enable = true; }
+      ];
+    };
+  };
+}
+```
+
+See [nix/README.md](nix/README.md) for what the module does and doesn't do,
+and for the `nix develop` dev shell.
+
 ## Pair an iPhone
 
 Open the client for your desktop:
