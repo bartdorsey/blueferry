@@ -31,8 +31,8 @@ in
     enable = lib.mkEnableOption "BlueFerry, the iPhone-to-Linux Bluetooth bridge";
     package = lib.mkOption {
       type = lib.types.package;
-      default = self.packages.${pkgs.system}.blueferry;
-      defaultText = lib.literalExpression "blueferry.packages.\${pkgs.system}.blueferry";
+      default = self.packages.${pkgs.stdenv.hostPlatform.system}.blueferry;
+      defaultText = lib.literalExpression "blueferry.packages.\${pkgs.stdenv.hostPlatform.system}.blueferry";
       description = "The BlueFerry package (backend + GTK client) to use.";
     };
   };
